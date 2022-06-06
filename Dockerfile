@@ -18,18 +18,21 @@ RUN apt-get update && \
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
     nvm install 17 && \
     nvm use 17 && \
-    source ~/.bashrc
+	git -C /opt/altv clone https://github.com/Dav-Renz/altv-athena-public.git athena-server && \
+    cd /opt/altv/athena-server && \
+    npm install && \
+    npm run update
 	
-######
+######source ~/.bashrc  && \
 # Install Athena
 ######
-
-WORKDIR /opt/altv/
-
-RUN git -C /opt/altv clone https://github.com/Dav-Renz/altv-athena-public.git athena-server && \
-    cd /opt/altv/athena-server && \
-	npm install && \
-	npm run update
+#
+#WORKDIR /opt/altv/
+#
+#RUN git -C /opt/altv clone https://github.com/Dav-Renz/altv-athena-public.git athena-server && \
+#    cd /opt/altv/athena-server && \
+#    npm install && \
+#    npm run update
 	
 WORKDIR /opt/altv/athena-server/
 	

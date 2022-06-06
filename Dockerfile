@@ -1,5 +1,5 @@
 
-FROM ubuntu:focal-20220415
+FROM node:17.9-bullseye
 
 COPY ./.docker/scripts/entrypoint.sh /root/
 
@@ -12,12 +12,6 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && \
     apt-get install -y git curl wget libatomic1 && \
     mkdir -p /opt/altv && \
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
-    export NVM_DIR="$HOME/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
-    nvm install 17 && \
-    nvm use 17 && \
 	git -C /opt/altv clone https://github.com/Dav-Renz/altv-athena-public.git athena-server && \
     cd /opt/altv/athena-server && \
     npm install && \

@@ -37,6 +37,14 @@ ALTV_SERVER_VOICE_EXTERNAL_PUBLIC_HOST=${ALTV_SERVER_VOICE_EXTERNAL_PUBLIC_HOST:
 ALTV_SERVER_VOICE_EXTERNAL_PUBLIC_PORT=${ALTV_SERVER_VOICE_EXTERNAL_PUBLIC_PORT:-"null"}
 
 
+# Athena options
+ATHENA_SERVER_MONGO_URL=${ATHENA_SERVER_MONGO_URL:-"null"}
+ATHENA_SERVER_ARES_ENDPOINT=${ATHENA_SERVER_ARES_ENDPOINT:-"null"}
+ATHENA_SERVER_USE_ALTV_RECONNECT=${ATHENA_SERVER_USE_ALTV_RECONNECT:-"true"}
+
+
+
+
 
 if [ ! -z "$ALTV_SERVER_RESOURCES" ]; then
     ALTV_SERVER_RESOURCES="[ \"webviews\", \"core\", $ALTV_SERVER_RESOURCES ]"
@@ -56,6 +64,18 @@ else
     ALTV_SERVER_TAGS="[ \"athena\", \"framework\", \"version\", \"3\" ]"
 fi
 
+
+cat <<EOF >/opt/altv/athena-server/AthenaConfig.json
+{
+    "[?] A URI with authentication to connect to a MongoDB Database": "TYPE IS STRING",
+    "[?] ex: mongodb://username:password@127.0.0.1:27017": "TYPE IS STRING",
+    "MONGO_URL": $ATHENA_SERVER_MONGO_URL,
+    "[?] Used for Ares Service Debugging": "TYPE IS STRING",
+    "ARES_ENDPOINT": $ATHENA_SERVER_ARES_ENDPOINT,
+    "[?] Use altv built-in reconnect?": "TYPE IS BOOLEAN",
+    "USE_ALTV_RECONNECT": $ATHENA_SERVER_USE_ALTV_RECONNECT
+}
+EOF
 
 
 cat <<EOF >/opt/altv/athena-server/configs/prod.json
@@ -94,8 +114,6 @@ cat <<EOF >/opt/altv/athena-server/configs/prod.json
         "externalPublicPort": $ALTV_SERVER_VOICE_EXTERNAL_PUBLIC_PORT
     }
 }
-
-
 EOF
 
 npm run linux

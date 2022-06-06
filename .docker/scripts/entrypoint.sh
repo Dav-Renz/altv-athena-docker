@@ -116,4 +116,6 @@ cat <<EOF >/opt/altv/athena-server/configs/prod.json
 }
 EOF
 
+nvm use 17
+
 npm run linux

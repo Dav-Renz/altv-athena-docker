@@ -65,7 +65,7 @@ else
 fi
 
 
-cat <<EOF >/opt/altv/athena-server/AthenaConfig.json
+cat <<EOF >/opt/altv/athena-server/xAthenaConfig.jsonx
 {
     "[?] A URI with authentication to connect to a MongoDB Database": "TYPE IS STRING",
     "[?] ex: mongodb://username:password@127.0.0.1:27017": "TYPE IS STRING",
@@ -78,7 +78,7 @@ cat <<EOF >/opt/altv/athena-server/AthenaConfig.json
 EOF
 
 
-cat <<EOF >/opt/altv/athena-server/configs/prod.json
+cat <<EOF >/opt/altv/athena-server/configs/xprod.jsonx
 {
     "name": "$ALTV_SERVER_NAME",
     "host": "$ALTV_SERVER_HOST",

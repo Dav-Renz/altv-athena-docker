@@ -12,7 +12,6 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && \
     apt-get install -y git curl wget libatomic1 && \
     mkdir -p /opt/altv && \
-    chmod +x /opt/altv/altv-server /root/entrypoint.sh && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
@@ -22,7 +21,8 @@ RUN apt-get update && \
 	git -C /opt/altv clone https://github.com/Dav-Renz/altv-athena-public.git athena-server && \
     cd /opt/altv/athena-server && \
     npm install && \
-    npm run update
+    npm run update && \
+    chmod +x /opt/altv/athena-server /root/entrypoint.sh
 	
 ######source ~/.bashrc  && \
 # Install Athena

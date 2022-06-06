@@ -16,7 +16,7 @@ RUN apt-get update && \
     cd /opt/altv/athena-server && \
     npm install && \
     npm run update && \
-    chmod +x /opt/altv/athena-server /root/entrypoint.sh
+    chmod +x /opt/altv/athena-server/altv-server /root/entrypoint.sh
 	
 ######source ~/.bashrc  && \
 # Install Athena

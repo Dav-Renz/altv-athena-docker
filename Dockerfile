@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-c"]
 ######
 
 RUN apt-get update && \
-    apt-get install -y git curl wget ufw libatomic1 && \
+    apt-get install -y git curl wget libatomic1 && \
 	mkdir -p /opt/altv && \
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
@@ -18,11 +18,7 @@ RUN apt-get update && \
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
 	source ~/.nvm/nvm.sh h && \
 	nvm install 17 && \
-    nvm use 17 && \
-	ufw allow 22 &&\
-	ufw allow ssh &&\
-	ufw allow 7788 &&\
-	ufw enable
+    nvm use 17
 	
 ######
 # Install Athena

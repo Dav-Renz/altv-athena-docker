@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-c"]
 ######
 
 RUN apt-get update && \
-    apt-get install -y git curl wget ufw libatomic1 %% \
+    apt-get install -y git curl wget ufw libatomic1 && \
 	mkdir -p /opt/altv && \
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
